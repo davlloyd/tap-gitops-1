@@ -41,7 +41,7 @@ spec:
       - env:
         - name: COLOR
           value: yellow
-        image: us.gcr.io/lloyd-266015/supply-chain/surfers-bluegreen-alpha@sha256:a5eec7c891e457674d56e4b9d8133d7bc47fe4aa40541431727d0be5afd78c22
+        image: us.gcr.io/lloyd-266015/supply-chain/surfers-bluegreen-alpha@sha256:ad9831eeba246c5d392c63c8608f20463c9cf72e845cb801b5f426191eef458b
         name: workload
         resources: {}
         securityContext:
