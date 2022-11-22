@@ -39,7 +39,7 @@ spec:
       - env:
         - name: GOOGLE_API_KEY
           value: AIzaSyClGDVij1cDFxSg9T034eayd8cZgnljRYA
-        image: us.gcr.io/lloyd-266015/supply-chain/surfersweb-alpha@sha256:f93ea11f577709e354360f7f95fd3e297b195d932fc8435e7f9e68d56cf0d3e6
+        image: us.gcr.io/lloyd-266015/supply-chain/surfersweb-alpha@sha256:90b5ac62958464614de6be3b64751ec2803eaadb2869221282b0dd5d77e51d00
         name: workload
         resources: {}
         securityContext:
