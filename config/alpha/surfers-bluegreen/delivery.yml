@@ -23,8 +23,13 @@ spec:
         autoscaling.knative.dev/scale-down-delay: 2s
         autoscaling.knative.dev/target: "60"
         autoscaling.knative.dev/window: 10s
-        conventions.carto.run/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        conventions.carto.run/applied-conventions: |-
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
+        kubectl.kubernetes.io/last-applied-configuration: |
+          {"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{},"labels":{"app.kubernetes.io/part-of":"surferslookout","apps.tanzu.vmware.com/has-tests":"true","apps.tanzu.vmware.com/language":"python","apps.tanzu.vmware.com/workload-type":"web"},"name":"surfers-bluegreen","namespace":"alpha"},"spec":{"env":[{"name":"COLOR","value":"green"}],"params":[{"name":"clusterBuilder","value":"full-jammy"},{"name":"git_user_email","value":"davidlloyd0@gmail.com"},{"name":"git_user_name","value":"davlloyd"},{"name":"annotations","value":{"autoscaling.knative.dev/initial-scale":"1","autoscaling.knative.dev/max-scale":"50","autoscaling.knative.dev/metric":"rps","autoscaling.knative.dev/min-scale":"1","autoscaling.knative.dev/scale-down-delay":"2s","autoscaling.knative.dev/target":"60","autoscaling.knative.dev/window":"10s"}}],"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/davlloyd/surfers-bluegreen"}}}}
       labels:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: surferslookout
@@ -37,7 +42,7 @@ spec:
       - env:
         - name: COLOR
           value: green
-        image: us.gcr.io/lloyd-266015/supply-chain/surfers-bluegreen-alpha@sha256:b17b36e3596730b1ddb802cbc26a34f616f461f33f1129ae1041d3a184ad9ba5
+        image: us.gcr.io/lloyd-266015/supply-chain/surfers-bluegreen-alpha@sha256:5d291b60f567e0ff619cd134883bdd24139635e87ed25801dd58a6d3c4e37fd0
         name: workload
         resources: {}
         securityContext:
