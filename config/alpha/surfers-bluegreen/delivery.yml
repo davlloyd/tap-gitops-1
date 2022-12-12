@@ -23,7 +23,10 @@ spec:
         autoscaling.knative.dev/scale-down-delay: 2s
         autoscaling.knative.dev/target: "60"
         autoscaling.knative.dev/window: 10s
-        conventions.carto.run/applied-conventions: appliveview-sample/app-live-view-appflavour-check
+        conventions.carto.run/applied-conventions: |-
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/app-live-view-appflavour-check
+          appliveview-sample/app-live-view-appflavour-check
         developer.conventions/target-containers: workload
       labels:
         app.kubernetes.io/component: run
@@ -37,7 +40,7 @@ spec:
       - env:
         - name: COLOR
           value: green
-        image: us.gcr.io/lloyd-266015/supply-chain/surfers-bluegreen-alpha@sha256:b17b36e3596730b1ddb802cbc26a34f616f461f33f1129ae1041d3a184ad9ba5
+        image: us.gcr.io/lloyd-266015/supply-chain/surfers-bluegreen-alpha@sha256:5d291b60f567e0ff619cd134883bdd24139635e87ed25801dd58a6d3c4e37fd0
         name: workload
         resources: {}
         securityContext:
