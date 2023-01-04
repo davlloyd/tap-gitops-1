@@ -43,7 +43,7 @@ spec:
         deployment-model: blue-green
     spec:
       containers:
-      - image: us.gcr.io/lloyd-266015/supply-chain/surfersapi-default@sha256:13d50c2f1ff093d6ba1af84c32032e24887255011cbb10d45ae5286e7ded02ab
+      - image: us.gcr.io/lloyd-266015/supply-chain/surfersapi-default@sha256:23a932e26ac90e2f9e1507f8796e57bc808fd44886a0a71952994fdf61a67c34
         name: workload
         resources: {}
         securityContext:
