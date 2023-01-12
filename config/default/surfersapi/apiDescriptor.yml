@@ -27,5 +27,8 @@ spec:
   location:
     path: /api/v1/api-docs
     baseURL:
-      url: http://surfersapi.default
+      ref:
+        apiVersion: serving.knative.dev/v1
+        kind: Service
+        name: surfersapi
 
