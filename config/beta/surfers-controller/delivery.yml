@@ -1,0 +1,66 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: surfers-controller
+  annotations:
+    ootb.apps.tanzu.vmware.com/servicebinding-workload: "true"
+    ootb.apps.tanzu.vmware.com/apidescriptor-ref: "true"
+    kapp.k14s.io/change-rule: upsert after upserting servicebinding.io/ServiceBindings
+  labels:
+    app.kubernetes.io/part-of: surferslookout
+    apps.tanzu.vmware.com/has-tests: "true"
+    apps.tanzu.vmware.com/language: python
+    apps.tanzu.vmware.com/workload-type: web
+    deployment-model: bluegreen
+    app.kubernetes.io/component: run
+    carto.run/workload-name: surfers-controller
+spec:
+  template:
+    metadata:
+      annotations:
+        apps.tanzu.vmware.com/correlationid: harbor.home.tanzu.rocks/tap/local-source:beta-surfers-controller?sub_path=/
+        apps.tanzu.vmware.com/debug: "true"
+        apps.tanzu.vmware.com/live-update: "true"
+        autoscaling.knative.dev/initial-scale: "1"
+        autoscaling.knative.dev/max-scale: "50"
+        autoscaling.knative.dev/metric: rps
+        autoscaling.knative.dev/min-scale: "1"
+        autoscaling.knative.dev/scale-down-delay: 2s
+        autoscaling.knative.dev/target: "60"
+        autoscaling.knative.dev/window: 10s
+        conventions.carto.run/applied-conventions: |-
+          developer-conventions/add-source-image-label
+          spring-boot-convention/auto-configure-actuators-check
+          spring-boot-convention/is-native-app-check
+          spring-boot-convention/is-prometheus-enabled-check
+          spring-boot-convention/app-live-view-appflavour-check
+        developer.apps.tanzu.vmware.com/image-source-digest: harbor.home.tanzu.rocks/tap/local-source:beta-surfers-controller@sha256:4bb4b99b7c430ab8c3efa9992bcdcb0308c513688e2872c27f94329fedfbfb73
+        developer.conventions/target-containers: workload
+        local-source-proxy.apps.tanzu.vmware.com: harbor.home.tanzu.rocks/tap/local-source:beta-surfers-controller@sha256:4bb4b99b7c430ab8c3efa9992bcdcb0308c513688e2872c27f94329fedfbfb73
+      labels:
+        app.kubernetes.io/component: run
+        app.kubernetes.io/part-of: surferslookout
+        apps.tanzu.vmware.com/has-tests: "true"
+        apps.tanzu.vmware.com/language: python
+        apps.tanzu.vmware.com/workload-type: web
+        carto.run/workload-name: surfers-controller
+        deployment-model: bluegreen
+    spec:
+      containers:
+      - env:
+        - name: COLOR
+          value: red
+        image: harbor.home.tanzu.rocks/tap/supply-chain/surfers-controller-beta@sha256:bd9920196908041a02c1be451beef1bc2dd553162f3e9adb2ebf897be8fd2be6
+        name: workload
+        resources: {}
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsNonRoot: true
+          runAsUser: 1000
+          seccompProfile:
+            type: RuntimeDefault
+      serviceAccountName: default
+
