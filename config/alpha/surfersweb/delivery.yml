@@ -23,7 +23,7 @@ spec:
         autoscaling.knative.dev/max-scale: "50"
         autoscaling.knative.dev/metric: rps
         autoscaling.knative.dev/min-scale: "1"
-        autoscaling.knative.dev/scale-down-delay: 2s
+        autoscaling.knative.dev/scale-down-delay: 3s
         autoscaling.knative.dev/target: "60"
         autoscaling.knative.dev/window: 10s
         conventions.carto.run/applied-conventions: |-
