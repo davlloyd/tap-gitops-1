@@ -25,6 +25,17 @@ rebaseRules:
   - apiVersionKindMatcher:
       apiVersion: serving.knative.dev/v1
       kind: Service
+- path:
+  - spec
+  - traffic
+  type: copy
+  sources:
+  - new
+  - existing
+  resourceMatchers:
+  - apiVersionKindMatcher:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
 waitRules:
 - resourceMatchers:
   - apiVersionKindMatcher:
